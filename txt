@@ -1,0 +1,27 @@
+🚀 **Built a Mini Social Media Backend using Node.js**
+
+Recently, I built a small backend project to strengthen my understanding of authentication, database relationships, and CRUD operations.
+
+In this project, I implemented a **mini social-style system** where users can register, log in, create posts, like posts, and edit their content.
+
+🔑 **Key Features**
+
+• Secure **User Authentication** using JWT
+• Password hashing with **bcrypt**
+• **Protected routes** with custom middleware
+• Create, edit, and update posts
+• **Like / Unlike functionality**
+• **User ↔ Posts relationship** using MongoDB references
+• Fetching relational data using **Mongoose populate()**
+
+🛠 **Tech Stack**
+
+Node.js | Express.js | MongoDB | Mongoose | EJS | JWT | bcrypt
+
+This project helped me understand how real backend systems manage **authentication, user sessions, and database relationships**.
+
+🎥 Sharing a quick demo of the project below.
+
+I’m currently learning and building more projects in **backend & full-stack development**.
+
+#NodeJS #ExpressJS #MongoDB #BackendDevelopment #WebDevelopment #FullStackDeveloper #CodingJourney
