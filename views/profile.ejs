@@ -18,51 +18,73 @@
     </div>
 
     <!-- Main Container -->
-    <div class="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-      <h1 class="text-3xl font-bold mb-2 text-gray-800">
-        Hello <%= user.username %> how are you👋
-      </h1>
-      <p class="text-gray-500 mb-6">YOU CAN CREATE A NEW POST</p>
+   <div class="max-w-2xl mx-auto bg-white p-6 rounded-2xl shadow-md mt-6">
 
-      <!-- Form -->
-      <form action="/post" method="post" class="flex flex-col gap-4 mb-8">
-        <textarea
-          name="content"
-          class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          placeholder="What's in your mind..."
-          rows="4"
-        ></textarea>
-
-        <input
-          type="submit"
-          value="Create New Post"
-          class="bg-blue-500 text-white py-2 rounded-lg cursor-pointer hover:bg-blue-600"
-        />
-      </form>
-
-      <!-- Posts Section -->
-      <h3 class="text-xl font-semibold mb-4">YOUR POSTS</h3>
-
-      <div class="space-y-4">
-        <!-- Post Card -->
-         <% user.posts.reverse().forEach(function(posts){ %>
-             <div class="bg-gray-50 p-4 mb-4 rounded-lg border">
-          <h4 class="font-semibold text-blue-700">@<%= user.username %></h4>
-
-          <p class="text-gray-600 mt-2">
-           <%= posts.content %>
-          </p>
-          <small> <%= posts.likes.length %> Likes</small>
-
-          <div class="flex gap-4 mt-3">
-            <a href="/like/<%= posts._id %>" class="text-blue-500 hover:underline">
-              <%= posts.likes.indexOf(user._id) === -1 ? "Like" : "Dislike" %> 
-            </a>
-            <a href="/edit/<%= posts._id %>" class="text-green-500 hover:underline">Edit</a>
-          </div>
-        </div>
-        <%})  %>
-      </div>
+  <!-- Profile Section -->
+  <div class="flex items-center gap-4 mb-6">
+    <div class="w-20 h-20 overflow-hidden rounded-full border-2 border-blue-400">
+      <img class="h-full w-full object-cover" src="/images/uploads/<%= user.profilepic %>" alt="">
     </div>
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-800">
+        Hello <%= user.username %> 👋
+      </h1>
+      <p class="text-gray-500 text-sm">Welcome back!</p>
+    </div>
+  </div>
+
+  <!-- Create Post -->
+  <div class="mb-8">
+    <p class="text-gray-600 mb-2 font-medium">Create a new post</p>
+
+    <form action="/post" method="post" class="flex flex-col gap-3">
+      <textarea
+        name="content"
+        class="border rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+        placeholder="What's in your mind..."
+        rows="3"
+      ></textarea>
+
+      <input
+        type="submit"
+        value="Post 🚀"
+        class="bg-blue-500 text-white py-2 rounded-xl cursor-pointer hover:bg-blue-600 transition"
+      />
+    </form>
+  </div>
+
+  <!-- Posts Section -->
+  <h3 class="text-lg font-semibold mb-4 text-gray-700">Your Posts</h3>
+
+  <div class="space-y-4">
+    <% [...user.posts].reverse().forEach(function(post){ %>
+
+      <div class="bg-gray-50 p-4 rounded-xl border hover:shadow-sm transition">
+
+        <div class="flex justify-between items-center">
+          <h4 class="font-semibold text-blue-600">@<%= user.username %></h4>
+          <small class="text-gray-400"><%= post.likes.length %> Likes</small>
+        </div>
+
+        <p class="text-gray-700 mt-2 leading-relaxed">
+          <%= post.content %>
+        </p>
+
+        <div class="flex gap-6 mt-3 text-sm">
+          <a href="/like/<%= post._id %>" class="text-blue-500 hover:underline">
+            <%= post.likes.some(id => id.toString() === user._id.toString()) ? "💔 Dislike" : "❤️ Like" %>
+          </a>
+
+          <a href="/edit/<%= post._id %>" class="text-green-500 hover:underline">
+            ✏️ Edit
+          </a>
+        </div>
+
+      </div>
+
+    <% }) %>
+  </div>
+</div>
   </body>
 </html>
